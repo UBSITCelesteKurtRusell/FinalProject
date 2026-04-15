@@ -1,3 +1,7 @@
 import { Routes } from '@angular/router';
+export const routes: Routes = [
+    //{path: 'kantoregion', component: KantoRegion},
 
-export const routes: Routes = [];
+    //{path:'', redirectTo:'home', pathMatch: 'full'}
+
+];
