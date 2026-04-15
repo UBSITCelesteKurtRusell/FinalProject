@@ -11,12 +11,14 @@ mongoose.connect(process.env.MONGODB_URI);
 
 app.listen(3000, () => { console.log('Server running on port 3000') });
 
-const onePiece = mongoose.model('pokemon', new mongoose.Schema({
+const onePiece = mongoose.model('onepiece', new mongoose.Schema({
 
     name: String,
-    type: String,
-    level: Number,
-    nature: String
+    race: String,
+    age: Number,
+    weapon: String,
+    devilfruit: String,
+    faction: String
 
 }));
 
