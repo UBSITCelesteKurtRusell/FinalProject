@@ -6,7 +6,7 @@
   background: var(--bg);
 }
 
-.hero__content {
+.hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   padding: 2rem 1.5rem;
 }
 
-.hero__badge {
+.hero-badge {
   border: 1.5px solid var(--gold);
   color: var(--gold);
   font-size: 0.82rem;
@@ -25,32 +25,32 @@
   border-radius: 999px;
 }
 
-.hero__heading {
+.hero-heading {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
 }
 
-.hero__heading-white {
+.hero-heading-white {
   font-size: 4rem;
   font-weight: 800;
   color: #fff;
 }
 
-.hero__heading-orange {
+.hero-heading-orange {
   font-size: 4rem;
   font-weight: 800;
   color: var(--orange);
 }
 
-.hero__sub {
+.hero-sub {
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.6;
   max-width: 480px;
 }
 
-.hero__actions {
+.hero-actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;

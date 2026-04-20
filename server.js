@@ -22,24 +22,24 @@ const onePiece = mongoose.model('onepiece', new mongoose.Schema({
 
 }));
 
-app.get('/api/pokemon', async (req, res) => {
+app.get('/api/onepiece', async (req, res) => {
     const onepiece = await onePiece.find();
     res.send(onepiece);
     console.log("Fetched All Crewmember!");
 });
 
-app.post('/api/pokemon', async(req, res) => {
+app.post('/api/onepiece', async(req, res) => {
     const onepiece = new onePiece (req.body);
     await onepiece.save();
     res.send(onepiece); console.log('Added new crew member', onepiece);
 });
 
-app.delete('/api/pokemon/:id', async(req, res) =>{
+app.delete('/api/onepiece/:id', async(req, res) =>{
     await onePiece.findByIdAndDelete(req.params.id);
     res.status(204).send;
 });
 
-app.put('/api/pokemon/:id',async(req,res) => {
+app.put('/api/onepiece/:id',async(req,res) => {
     const updateOnePiece = await onePiece.findByIdAndUpdate(req.params.id,req.body,{new:true});
     res.send(updateOnePiece);
 })
