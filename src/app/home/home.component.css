@@ -1,0 +1,89 @@
+.hero {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  max-width: 680px;
+  padding: 2rem 1.5rem;
+}
+
+.hero__badge {
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+}
+
+.hero__heading {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.hero__heading-white {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.hero__heading-orange {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--orange);
+}
+
+.hero__sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--orange);
+  color: #fff;
+  border: 2px solid var(--orange);
+}
+
+.btn--primary:hover {
+  background: var(--orange-dark);
+}
+
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn--outline:hover {
+  border-color: #fff;
+}

@@ -1,12 +1,20 @@
-<header class="header">
-  <nav class="navbar">
-    <ul class="nav-links">
-      <li>
-        <a routerLink="/kantoregion" routerLinkActive="active-link">
-          One Piece Character
-        </a>
-      </li>
+<nav class="navbar">
+  <div class="navbar__brand">
+    <span class="navbar__icon">⚓</span>
+    <div class="navbar__brand-text">
+      <span class="navbar__title">One Piece</span>
+      <span class="navbar__sub">Character Hub</span>
+    </div>
+  </div>
 
-    </ul>
-  </nav>
-</header>
+  <ul class="navbar__links">
+    <li><a routerLink="/"           routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li><a routerLink="/characters" routerLinkActive="active">Characters</a></li>
+    <li><a routerLink="/builder"    routerLinkActive="active">Create Character</a></li>
+    <li><a routerLink="/factions"   routerLinkActive="active">Factions</a></li>
+  </ul>
+
+  <a routerLink="/builder" class="navbar__cta">
+    <span class="navbar__cta-icon">→</span> Join Crew
+  </a>
+</nav>
