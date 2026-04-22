@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { CharacterCard } from '../character-card/character-card.component';
 
 @Component({
   selector: 'app-character-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, CharacterCard],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.css',
 })
@@ -36,4 +38,15 @@ export class CharacterListComponent {
   setFilter(f: string): void {
     this.filter = f;
   }
+
+  onDelete(id: string): void {
+    if (!confirm('Remove this character?')) return;
+    this.http.delete(`http://localhost:3000/api/onepiece/${id}`).subscribe(
+      () => {
+        this.characters = this.characters.filter(c => c._id !== id);
+      },
+      error => console.error('Error:', error)
+    );
+  }
 }
+

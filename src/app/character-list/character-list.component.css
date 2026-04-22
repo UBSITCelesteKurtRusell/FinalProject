@@ -1,25 +1,26 @@
 .list-page { padding: 2rem 1.5rem; max-width: 1200px; margin: 0 auto; }
 
-.list-header { margin-bottom: 1.5rem; }
-
-.list-title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--gold);
-}
-
-.list-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-}
-
-.filter-bar {
+.list-header {
   display: flex;
-  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
 }
 
+.list-title    { font-size: 2rem; font-weight: 800; color: var(--gold); }
+.list-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+.btn-add {
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+}
+.btn-add:hover { background: var(--orange-dark); }
+
+.filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
 .filter-bar button {
   background: transparent;
   border: 1.5px solid var(--border);
@@ -30,7 +31,6 @@
   font-weight: 600;
   cursor: pointer;
 }
-
 .filter-bar button:hover { color: var(--text); border-color: var(--text-muted); }
 .filter-bar button.active { border-color: var(--orange); color: var(--orange); }
 
@@ -38,49 +38,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
-}
-
-.character-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.character-card:hover { border-color: var(--orange); }
-
-.character-card__top { border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
-
-.character-card__name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.character-card__stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem 1rem;
-}
-
-.stat { display: flex; flex-direction: column; gap: 0.1rem; }
-
-.stat__label {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.stat__value {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .state-msg { text-align: center; color: var(--text-muted); padding: 3rem; }

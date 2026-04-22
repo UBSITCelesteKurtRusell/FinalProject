@@ -1,0 +1,28 @@
+
+<section class="page">
+  <header class="page-header">
+    <h1 class="page-title">Weapons</h1>
+    <p class="page-sub">{{ weapons.length }} weapons from the Grand Line</p>
+  </header>
+
+  <p *ngIf="loading" class="state-msg">Loading weapons...</p>
+  <p *ngIf="error"   class="state-msg state-msg--error">{{ error }}</p>
+
+  <div *ngIf="!loading && !error" class="weapon-grid">
+    <div class="weapon-card" *ngFor="let w of weapons">
+      <h3 class="weapon-card__name">{{ w.name }}</h3>
+      <div class="weapon-card__stats">
+        <div class="stat">
+          <span class="stat__label">Type</span>
+          <span class="stat__value">{{ w.type || '—' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Owner</span>
+          <span class="stat__value">{{ w.owner || '—' }}</span>
+        </div>
+      </div>
+      <p class="weapon-card__desc" *ngIf="w.description">{{ w.description }}</p>
+    </div>
+    <p *ngIf="weapons.length === 0" class="state-msg">No weapons found.</p>
+  </div>
+</section>

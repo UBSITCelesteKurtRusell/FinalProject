@@ -1,0 +1,26 @@
+<section class="page">
+  <header class="page-header">
+    <h1 class="page-title">Devil Fruits</h1>
+    <p class="page-sub">{{ fruits.length }} fruits from the Grand Line</p>
+  </header>
+
+  <div class="filter-bar">
+    <button *ngFor="let t of types"
+      [class.active]="filter === t"
+      (click)="setFilter(t)">
+      {{ t }}
+    </button>
+  </div>
+
+  <p *ngIf="loading" class="state-msg">Loading devil fruits...</p>
+  <p *ngIf="error"   class="state-msg state-msg--error">{{ error }}</p>
+
+  <div *ngIf="!loading && !error" class="fruit-grid">
+    <div class="fruit-card" *ngFor="let f of filtered">
+      <span class="fruit-card__type fruit-card__type--{{ f.type?.toLowerCase() }}">{{ f.type }}</span>
+      <h3 class="fruit-card__name">{{ f.name }}</h3>
+      <p class="fruit-card__desc">{{ f.description }}</p>
+    </div>
+    <p *ngIf="filtered.length === 0" class="state-msg">No fruits found.</p>
+  </div>
+</section>
