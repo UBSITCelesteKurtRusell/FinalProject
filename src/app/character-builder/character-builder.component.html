@@ -1,0 +1,119 @@
+<section class="builder-page">
+
+  <!-- Success Screen -->
+  <div *ngIf="success" class="success-screen">
+    <span class="success-icon">🏴‍☠️</span>
+    <h2 class="success-title">{{ character.name }} has joined the Grand Line!</h2>
+    <p class="success-sub">Your character has been saved to the roster.</p>
+    <button class="btn btn--primary" (click)="goToRoster()">View Roster</button>
+  </div>
+
+  <!-- Builder Wizard -->
+  <div *ngIf="!success">
+
+    <header class="builder-header">
+      <h1 class="builder-title">Character Builder</h1>
+      <p class="builder-sub">Step {{ step }} of 3</p>
+    </header>
+
+    <div class="step-bar">
+      <div class="step-bar__fill" [style.width.%]="(step / 3) * 100"></div>
+    </div>
+
+    <div class="builder-card">
+      <p *ngIf="error" class="form__error">{{ error }}</p>
+
+      <!-- Step 1: Faction -->
+      <div *ngIf="step === 1">
+        <h2 class="step-title">Choose Your Faction</h2>
+        <p class="step-sub">Will you sail as a Pirate or serve the Navy?</p>
+        <div class="faction-select">
+          <div class="faction-card faction-card--pirate"
+            [class.active]="character.faction === 'Pirate'"
+            (click)="selectFaction('Pirate')">
+            <span class="faction-card__icon">☠</span>
+            <span class="faction-card__label">Pirate</span>
+            <p class="faction-card__desc">Sail the Grand Line in search of the One Piece. Freedom above all.</p>
+          </div>
+          <div class="faction-card faction-card--navy"
+            [class.active]="character.faction === 'Navy'"
+            (click)="selectFaction('Navy')">
+            <span class="faction-card__icon">⚓</span>
+            <span class="faction-card__label">Navy</span>
+            <p class="faction-card__desc">Uphold justice and protect the World Government.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Identity -->
+      <div *ngIf="step === 2">
+        <h2 class="step-title">Define Your Identity</h2>
+        <p class="step-sub">Who are you in the world of One Piece?</p>
+        <div class="form-fields">
+          <div class="form__group">
+            <label class="form__label">Name</label>
+            <input type="text" placeholder="Your character's name" [(ngModel)]="character.name" name="name" />
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Race</label>
+              <select [(ngModel)]="character.race" name="race">
+                <option value="">Select race</option>
+                <option *ngFor="let r of races" [value]="r">{{ r }}</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Age</label>
+              <input type="number" min="1" [(ngModel)]="character.age" name="age" />
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Role</label>
+            <select [(ngModel)]="character.role" name="role">
+              <option value="">Select role</option>
+              <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Powers -->
+      <div *ngIf="step === 3">
+        <h2 class="step-title">Choose Your Powers</h2>
+        <p class="step-sub">Arm yourself for the Grand Line.</p>
+        <div class="form-fields">
+          <div class="form__group">
+            <label class="form__label">Weapon</label>
+            <select [(ngModel)]="character.weapon" name="weapon">
+              <option *ngFor="let w of weapons" [value]="w">{{ w }}</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Devil Fruit</label>
+            <select [(ngModel)]="character.devilfruit" name="devilfruit">
+              <option *ngFor="let f of fruits" [value]="f">{{ f }}</option>
+            </select>
+          </div>
+          <div class="preview-card">
+            <h3 class="preview-card__title">Preview</h3>
+            <p class="preview-card__name">{{ character.name || 'Unknown' }}</p>
+            <p class="preview-card__detail">{{ character.faction }} · {{ character.race || '?' }} · Age {{ character.age }}</p>
+            <p class="preview-card__detail">{{ character.role || '—' }} · {{ character.weapon }} · {{ character.devilfruit }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="builder-actions">
+        <button *ngIf="step > 1" class="btn btn--ghost" (click)="prevStep()">← Back</button>
+        <div class="spacer"></div>
+        <button *ngIf="step < 3" class="btn btn--primary" (click)="nextStep()">Next →</button>
+        <button *ngIf="step === 3" class="btn btn--primary" [disabled]="submitting" (click)="submit()">
+          {{ submitting ? 'Saving...' : 'Join the Grand Line!' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</section>
