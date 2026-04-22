@@ -1,0 +1,84 @@
+<section class="form-page">
+
+  <header class="form-header">
+    <h1 class="form-title">Edit Character</h1>
+    <p class="form-sub">Update this character's details</p>
+  </header>
+
+  <p *ngIf="loading" class="state-msg">Loading character...</p>
+
+  <form *ngIf="!loading" class="form" (ngSubmit)="submit()">
+
+    <p *ngIf="error" class="form__error">{{ error }}</p>
+
+    <!-- Faction -->
+    <div class="form__group">
+      <label class="form__label">Faction</label>
+      <div class="faction-toggle">
+        <button type="button" class="faction-btn faction-btn--pirate"
+          [class.active]="form.faction === 'Pirate'"
+          (click)="form.faction = 'Pirate'">
+          ☠ Pirate
+        </button>
+        <button type="button" class="faction-btn faction-btn--navy"
+          [class.active]="form.faction === 'Navy'"
+          (click)="form.faction = 'Navy'">
+          ⚓ Navy
+        </button>
+      </div>
+    </div>
+
+    <!-- Name -->
+    <div class="form__group">
+      <label class="form__label" for="name">Name</label>
+      <input id="name" type="text" [(ngModel)]="form.name" name="name" />
+    </div>
+
+    <!-- Role & Age -->
+    <div class="form__row">
+      <div class="form__group">
+        <label class="form__label" for="role">Role</label>
+        <select id="role" [(ngModel)]="form.role" name="role">
+          <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+        </select>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="age">Age</label>
+        <input id="age" type="number" min="1" [(ngModel)]="form.age" name="age" />
+      </div>
+    </div>
+
+    <!-- Race -->
+    <div class="form__group">
+      <label class="form__label" for="race">Race</label>
+      <select id="race" [(ngModel)]="form.race" name="race">
+        <option *ngFor="let r of races" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+
+    <!-- Weapon -->
+    <div class="form__group">
+      <label class="form__label" for="weapon">Weapon</label>
+      <select id="weapon" [(ngModel)]="form.weapon" name="weapon">
+        <option *ngFor="let w of weapons" [value]="w">{{ w }}</option>
+      </select>
+    </div>
+
+    <!-- Devil Fruit -->
+    <div class="form__group">
+      <label class="form__label" for="devilfruit">Devil Fruit</label>
+      <select id="devilfruit" [(ngModel)]="form.devilfruit" name="devilfruit">
+        <option *ngFor="let f of fruits" [value]="f">{{ f }}</option>
+      </select>
+    </div>
+
+    <!-- Actions -->
+    <div class="form__actions">
+      <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn--primary" [disabled]="submitting">
+        {{ submitting ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </div>
+
+  </form>
+</section>
