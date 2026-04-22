@@ -1,0 +1,53 @@
+<section class="list-page">
+
+  <header class="list-header">
+    <h1 class="list-title">Character Roster</h1>
+    <p class="list-subtitle">{{ characters.length }} characters loaded from the Grand Line</p>
+  </header>
+
+  <div class="filter-bar">
+    <button [class.active]="filter === 'All'"    (click)="setFilter('All')">All</button>
+    <button [class.active]="filter === 'Pirate'" (click)="setFilter('Pirate')">☠ Pirates</button>
+    <button [class.active]="filter === 'Navy'"   (click)="setFilter('Navy')">⚓ Navy</button>
+  </div>
+
+  <p *ngIf="loading" class="state-msg">Loading the Grand Line...</p>
+  <p *ngIf="error"   class="state-msg state-msg--error">{{ error }}</p>
+
+  <div *ngIf="!loading && !error" class="character-grid">
+    <div class="character-card" *ngFor="let c of filtered">
+      <div class="character-card__top">
+        <span class="character-card__name">{{ c.name }}</span>
+      </div>
+      <div class="character-card__stats">
+        <div class="stat">
+          <span class="stat__label">Role</span>
+          <span class="stat__value">{{ c.role || '—' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Affiliation</span>
+          <span class="stat__value">{{ c.affiliation || '—' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Origin</span>
+          <span class="stat__value">{{ c.origin || '—' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Devil Fruit</span>
+          <span class="stat__value">{{ c.devil_fruit || 'None' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Bounty</span>
+          <span class="stat__value">{{ c.bounty ? (c.bounty | number) + ' B' : '—' }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Status</span>
+          <span class="stat__value">{{ c.status || '—' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="filtered.length === 0" class="state-msg">No characters found.</p>
+  </div>
+
+</section>

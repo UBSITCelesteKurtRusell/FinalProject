@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-export const routes: Routes = [
-    //{path: 'kantoregion', component: KantoRegion},
+import { CharacterListComponent } from './character-list/character-list.component';
 
-    //{path:'', redirectTo:'home', pathMatch: 'full'}
-    { path: '', component: HomeComponent }
+export const routes: Routes = [
+  { path: '',           component: HomeComponent },
+  { path: 'characters', component: CharacterListComponent },
 ];
