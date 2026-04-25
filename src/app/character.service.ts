@@ -11,7 +11,9 @@ export class CharacterService {
   characterList = signal<any[]>([]);
 
   fetchCharacters() {
-    this.http.get<any[]>(this.apiUrl).subscribe(data => this.characterList.set(data));
+    this.http.get<any[]>(this.apiUrl).subscribe(
+      data => this.characterList.set(data)
+    );
   }
 
   saveCharacter(data: any) {

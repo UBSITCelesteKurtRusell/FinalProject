@@ -15,14 +15,14 @@ export class CharacterForm implements OnInit {
   editingId = signal<string | null>(null);
   showModal = signal(false);
 
+  // Matches server.js schema exactly: name, race, age, weapon, devilfruit, faction
   characterForm = this.formBuilder.nonNullable.group({
     name:       ['', Validators.required],
-    faction:    ['Pirate', Validators.required],
-    devilfruit: [''],
-    weapon:     [''],
-    role:       ['', Validators.required],
     race:       ['', Validators.required],
-    isCustom:   [true],
+    age:        [1, [Validators.required, Validators.min(1)]],
+    weapon:     [''],
+    devilfruit: [''],
+    faction:    ['Pirate', Validators.required],
   });
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class CharacterForm implements OnInit {
 
   openModal() {
     this.editingId.set(null);
-    this.characterForm.reset({ faction: 'Pirate', isCustom: true });
+    this.characterForm.reset({ faction: 'Pirate', age: 1 });
     this.showModal.set(true);
   }
 
