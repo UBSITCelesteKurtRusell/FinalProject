@@ -1,85 +1,135 @@
-<section class="form-page">
-  <header class="form-header">
-    <h1 class="form-title">{{ isEdit ? 'Edit Character' : 'New Character' }}</h1>
-    <p class="form-sub">{{ isEdit ? 'Update character details' : 'Add a new soul to the Grand Line' }}</p>
-  </header>
+<section class="page">
 
-  <p *ngIf="loading" class="state-msg">Loading character...</p>
+  <!-- Page Header -->
+  <div class="page__header">
+    <div>
+      <h1 class="page__title">My Characters</h1>
+      <p class="page__sub">{{ characterService.characterList().length }} custom characters created</p>
+    </div>
+    <button class="btn-create" (click)="openModal()">+ Create Character</button>
+  </div>
 
-  <form *ngIf="!loading" class="form" (ngSubmit)="submit()">
+  <!-- Character Cards -->
+  <div class="character-grid">
+    @for (c of characterService.characterList(); track c._id) {
+      <div class="character-card">
+        <div class="character-card__top">
+          <div>
+            <h3 class="character-card__name">{{ c.name }}</h3>
+            <span class="character-card__faction"
+              [class.faction--pirate]="c.faction === 'Pirate'"
+              [class.faction--navy]="c.faction === 'Navy'">
+              {{ c.faction }}
+            </span>
+          </div>
+          <span class="character-card__anchor">⚓</span>
+        </div>
 
-    <p *ngIf="error" class="form__error">{{ error }}</p>
+        <div class="character-card__fields">
+          @if (c.role) {
+            <div class="field">
+              <span class="field__label">Role</span>
+              <span class="field__value">{{ c.role }}</span>
+            </div>
+          }
+          @if (c.race) {
+            <div class="field">
+              <span class="field__label">Race</span>
+              <span class="field__value">{{ c.race }}</span>
+            </div>
+          }
+          @if (c.weapon) {
+            <div class="field">
+              <span class="field__label">Weapon</span>
+              <span class="field__value">{{ c.weapon }}</span>
+            </div>
+          }
+          @if (c.devilfruit) {
+            <div class="field">
+              <span class="field__label">Devil Fruit</span>
+              <span class="field__value field__value--purple">{{ c.devilfruit }}</span>
+            </div>
+          }
+        </div>
 
-    <!-- Faction -->
-    <div class="form__group">
-      <label class="form__label">Faction</label>
-      <div class="faction-toggle">
-        <button type="button"
-          class="faction-btn faction-btn--pirate"
-          [class.active]="form.faction === 'Pirate'"
-          (click)="form.faction = 'Pirate'">
-          ☠ Pirate
-        </button>
-        <button type="button"
-          class="faction-btn faction-btn--navy"
-          [class.active]="form.faction === 'Navy'"
-          (click)="form.faction = 'Navy'">
-          ⚓ Navy
-        </button>
+        <div class="character-card__actions">
+          <button class="btn-edit" (click)="openEdit(c)">Edit</button>
+          <button class="btn-delete" (click)="deleteCharacter(c._id)">Remove</button>
+        </div>
       </div>
-    </div>
+    }
 
-    <!-- Name -->
-    <div class="form__group">
-      <label class="form__label" for="name">Name</label>
-      <input id="name" type="text" placeholder="e.g. Monkey D. Luffy" [(ngModel)]="form.name" name="name" />
-    </div>
-
-    <!-- Role & Age -->
-    <div class="form__row">
-      <div class="form__group">
-        <label class="form__label" for="role">Role</label>
-        <select id="role" [(ngModel)]="form.role" name="role">
-          <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
-        </select>
+    @if (characterService.characterList().length === 0) {
+      <div class="empty-state">
+        <p class="empty-state__icon">🏴‍☠️</p>
+        <p class="empty-state__text">No characters yet. Create your first one!</p>
+        <button class="btn-create" (click)="openModal()">+ Create Character</button>
       </div>
-      <div class="form__group">
-        <label class="form__label" for="age">Age</label>
-        <input id="age" type="number" min="1" [(ngModel)]="form.age" name="age" />
-      </div>
-    </div>
+    }
+  </div>
 
-    <!-- Race -->
-    <div class="form__group">
-      <label class="form__label" for="race">Race</label>
-      <select id="race" [(ngModel)]="form.race" name="race">
-        <option *ngFor="let r of races" [value]="r">{{ r }}</option>
-      </select>
-    </div>
-
-    <!-- Weapon -->
-    <div class="form__group">
-      <label class="form__label" for="weapon">Weapon</label>
-      <select id="weapon" [(ngModel)]="form.weapon" name="weapon">
-        <option *ngFor="let w of weapons" [value]="w">{{ w }}</option>
-      </select>
-    </div>
-
-    <!-- Devil Fruit -->
-    <div class="form__group">
-      <label class="form__label" for="devilfruit">Devil Fruit</label>
-      <select id="devilfruit" [(ngModel)]="form.devilfruit" name="devilfruit">
-        <option *ngFor="let f of fruits" [value]="f">{{ f }}</option>
-      </select>
-    </div>
-
-    <!-- Actions -->
-    <div class="form__actions">
-      <button type="button" class="btn btn--ghost" (click)="cancel()">Cancel</button>
-      <button type="submit" class="btn btn--primary" [disabled]="submitting">
-        {{ submitting ? 'Saving...' : (isEdit ? 'Save Changes' : 'Create Character') }}
-      </button>
-    </div>
-
-  </form>
 </section>
+
+<!-- Modal Overlay -->
+@if (showModal()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+
+      <div class="modal__header">
+        <h2 class="modal__title">{{ editingId() ? 'Edit Character' : 'Create New Character' }}</h2>
+        <button class="modal__close" (click)="closeModal()">✕</button>
+      </div>
+
+      <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="modal__form">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-group__label">Name <span class="required">*</span></label>
+          <input type="text" formControlName="name" placeholder="Enter character name" />
+        </div>
+
+        <!-- Affiliation -->
+        <div class="form-group">
+          <label class="form-group__label">Affiliation <span class="required">*</span></label>
+          <select formControlName="faction">
+            <option value="Pirate">Pirate</option>
+            <option value="Navy">Navy</option>
+          </select>
+        </div>
+
+        <!-- Devil Fruit -->
+        <div class="form-group">
+          <label class="form-group__label">Devil Fruit</label>
+          <input type="text" formControlName="devilfruit" placeholder="None or fruit name" />
+        </div>
+
+        <!-- Weapons -->
+        <div class="form-group">
+          <label class="form-group__label">Weapons</label>
+          <input type="text" formControlName="weapon" placeholder="None or weapon name" />
+        </div>
+
+        <!-- Role -->
+        <div class="form-group">
+          <label class="form-group__label">Role <span class="required">*</span></label>
+          <input type="text" formControlName="role" placeholder="e.g., Captain, Swordsman, Navigator" />
+        </div>
+
+        <!-- Race -->
+        <div class="form-group">
+          <label class="form-group__label">Race <span class="required">*</span></label>
+          <input type="text" formControlName="race" placeholder="e.g., Human, Fishman, Mink" />
+        </div>
+
+        <!-- Actions -->
+        <div class="modal__actions">
+          <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn-submit" [disabled]="characterForm.invalid">
+            {{ editingId() ? 'Save Changes' : 'Create' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+}

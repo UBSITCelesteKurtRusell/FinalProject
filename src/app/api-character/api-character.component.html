@@ -1,0 +1,108 @@
+<section class="page">
+
+  <div class="page__header">
+    <h1 class="page__title">One Piece Characters</h1>
+    <p class="page__sub">Explore characters from the Grand Line</p>
+  </div>
+
+  <!-- Search + Filter Bar -->
+  <div class="search-box">
+    <div class="search-box__row">
+      <div class="search-box__input-wrap">
+        <span class="search-box__icon">🔍</span>
+        <input
+          type="text"
+          class="search-box__input"
+          placeholder="Search by name, job, or crew..."
+          (input)="onSearch($event)"
+        />
+      </div>
+      <div class="filter-tabs">
+        <button
+          [class.active]="filter() === 'All'"
+          (click)="setFilter('All')">All</button>
+        <button
+          [class.active]="filter() === 'Devil Fruit'"
+          (click)="setFilter('Devil Fruit')">Devil Fruit</button>
+        <button
+          [class.active]="filter() === 'No Fruit'"
+          (click)="setFilter('No Fruit')">No Fruit</button>
+      </div>
+    </div>
+    <p class="search-box__count">
+      👥 Showing {{ filtered().length }} of {{ allCharacters().length }} characters
+    </p>
+  </div>
+
+  @if (loading()) {
+    <p class="state-msg">Loading the Grand Line...</p>
+  }
+
+  @if (error()) {
+    <p class="state-msg state-msg--error">{{ error() }}</p>
+  }
+
+  @if (!loading() && !error()) {
+    <div class="character-grid">
+      @for (c of filtered(); track c.id) {
+        <div class="character-card">
+          <div class="character-card__top">
+            <h3 class="character-card__name">{{ c.name }}</h3>
+            <span class="character-card__anchor">⚓</span>
+          </div>
+
+          <div class="character-card__field">
+            <span class="character-card__label">Job</span>
+            <span class="character-card__value">{{ c.job || '—' }}</span>
+          </div>
+
+          <div class="character-card__field">
+            <span class="character-card__label">Crew</span>
+            <span class="character-card__value character-card__value--blue">{{ c.crew || '—' }}</span>
+          </div>
+
+          @if (c.devil_fruit) {
+            <div class="fruit-badge">
+              <span class="fruit-badge__label">Devil Fruit</span>
+              <span class="fruit-badge__name">{{ c.devil_fruit }}</span>
+              @if (c.fruit_type) {
+                <span class="fruit-badge__type">{{ c.fruit_type }}</span>
+              }
+            </div>
+          }
+
+          @if (c.bounty) {
+            <div class="character-card__field">
+              <span class="character-card__label">Bounty</span>
+              <span class="character-card__value character-card__value--gold">{{ c.bounty }}</span>
+            </div>
+          }
+
+          <div class="character-card__row">
+            @if (c.age) {
+              <div class="character-card__field">
+                <span class="character-card__label">Age</span>
+                <span class="character-card__value">{{ c.age }}</span>
+              </div>
+            }
+            @if (c.size) {
+              <div class="character-card__field">
+                <span class="character-card__label">Size</span>
+                <span class="character-card__value">{{ c.size }}</span>
+              </div>
+            }
+          </div>
+
+          @if (c.status) {
+            <span class="status-badge">{{ c.status }}</span>
+          }
+        </div>
+      }
+
+      @if (filtered().length === 0) {
+        <p class="state-msg">No characters found.</p>
+      }
+    </div>
+  }
+
+</section>

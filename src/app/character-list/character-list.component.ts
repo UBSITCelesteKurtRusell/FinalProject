@@ -17,7 +17,7 @@ export class CharacterListComponent {
   filter: string = 'All';
 
   constructor(private http: HttpClient) {
-    this.http.get<any[]>('https://api.api-onepiece.com/v2/characters/en').subscribe(
+    this.http.get<any[]>('https://api.api-onepiece.com/v2/characters/en ').subscribe(
       response => {
         this.characters = response.slice(0, 10);
         this.loading = false;

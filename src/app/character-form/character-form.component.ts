@@ -1,91 +1,79 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CharacterService } from '../character.service';
 
 @Component({
   selector: 'app-character-form',
-  imports: [CommonModule, FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './character-form.component.html',
   styleUrl: './character-form.component.css',
 })
-export class CharacterForm {
-  isEdit: boolean = false;
-  editId: string = '';
-  loading: boolean = false;
-  submitting: boolean = false;
-  error: string = '';
+export class CharacterForm implements OnInit {
+  private formBuilder = inject(FormBuilder);
+  characterService = inject(CharacterService);
 
-  races    = ['Human','Fishman','Mink','Giant','Dwarf','Skypiean','Lunarian','Cyborg','Other'];
-  weapons  = ['None','Fists','Katana','Three Swords (Santoryu)','Saber','Nodachi','Pistol','Rifle','Bazooka','Staff','Spear','Trident','Bow','Custom Weapon'];
-  fruits   = ['None','Gomu Gomu no Mi','Mera Mera no Mi','Hie Hie no Mi','Gura Gura no Mi','Ope Ope no Mi','Magu Magu no Mi','Yami Yami no Mi','Pika Pika no Mi','Hana Hana no Mi','Doku Doku no Mi','Custom Fruit'];
-  roles    = ['Captain','First Mate','Swordsman','Navigator','Sniper','Cook','Doctor','Archaeologist','Shipwright','Musician','Helmsman','Commander','Admiral','Vice Admiral','Other'];
-  factions = ['Pirate', 'Navy'];
+  editingId = signal<string | null>(null);
+  showModal = signal(false);
 
-  form: any = {
-    name:       '',
-    race:       'Human',
-    age:        18,
-    weapon:     'None',
-    devilfruit: 'None',
-    faction:    'Pirate',
-    role:       'Captain',
-    isCustom:   true,
-  };
+  characterForm = this.formBuilder.nonNullable.group({
+    name:       ['', Validators.required],
+    faction:    ['Pirate', Validators.required],
+    devilfruit: [''],
+    weapon:     [''],
+    role:       ['', Validators.required],
+    race:       ['', Validators.required],
+    isCustom:   [true],
+  });
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-    const id = this.route.snapshot.paramMap.get('id');
+  ngOnInit() {
+    this.characterService.fetchCharacters();
+  }
+
+  openModal() {
+    this.editingId.set(null);
+    this.characterForm.reset({ faction: 'Pirate', isCustom: true });
+    this.showModal.set(true);
+  }
+
+  openEdit(character: any) {
+    this.editingId.set(character._id);
+    this.characterForm.patchValue(character);
+    this.showModal.set(true);
+  }
+
+  closeModal() {
+    this.showModal.set(false);
+    this.editingId.set(null);
+    this.characterForm.reset();
+  }
+
+  deleteCharacter(id: string) {
+    if (confirm('Remove this character from the Grand Line?')) {
+      this.characterService.deleteCharacter(id);
+    }
+  }
+
+  onSubmit() {
+    if (this.characterForm.invalid) return;
+    const data = this.characterForm.getRawValue();
+    const id = this.editingId();
+
     if (id) {
-      this.isEdit = true;
-      this.editId = id;
-      this.loading = true;
-      this.http.get<any>(`http://localhost:3000/api/onepiece/${id}`).subscribe(
-        response => {
-          this.form = response;
-          this.loading = false;
+      this.characterService.updateCharacter(id, data).subscribe({
+        next: () => {
+          this.characterService.fetchCharacters();
+          this.closeModal();
         },
-        error => {
-          console.error('Error:', error);
-          this.error = 'Failed to load character.';
-          this.loading = false;
-        }
-      );
-    }
-  }
-
-  submit(): void {
-    if (!this.form.name.trim()) { this.error = 'Name is required.'; return; }
-    if (this.form.age < 1)      { this.error = 'Age must be positive.'; return; }
-    this.error = '';
-    this.submitting = true;
-
-    if (this.isEdit) {
-      this.http.put<any>(`http://localhost:3000/api/onepiece/${this.editId}`, this.form).subscribe(
-        () => this.router.navigate(['/characters']),
-        error => {
-          console.error('Error:', error);
-          this.error = 'Failed to update character.';
-          this.submitting = false;
-        }
-      );
+        error: (err) => console.error('Update Failed', err)
+      });
     } else {
-      this.http.post<any>('http://localhost:3000/api/onepiece', this.form).subscribe(
-        () => this.router.navigate(['/characters']),
-        error => {
-          console.error('Error:', error);
-          this.error = 'Failed to create character.';
-          this.submitting = false;
-        }
-      );
+      this.characterService.saveCharacter(data).subscribe({
+        next: () => {
+          this.characterService.fetchCharacters();
+          this.closeModal();
+        },
+        error: (err) => console.error('Save Failed', err)
+      });
     }
-  }
-
-  cancel(): void {
-    this.router.navigate(['/characters']);
   }
 }

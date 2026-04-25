@@ -1,0 +1,212 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.page__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page__title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.page__sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Search box */
+.search-box {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.search-box__row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box__input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.search-box__icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.search-box__input {
+  padding-left: 2.5rem;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  height: 44px;
+}
+.search-box__input:focus { border-color: var(--orange); }
+
+/* Filter tabs */
+.filter-tabs {
+  display: flex;
+  gap: 0;
+}
+
+.filter-tabs button {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+}
+
+.filter-tabs button:first-child { border-radius: 8px 0 0 8px; }
+.filter-tabs button:last-child  { border-radius: 0 8px 8px 0; border-left: none; }
+.filter-tabs button:not(:first-child):not(:last-child) { border-left: none; }
+
+.filter-tabs button.active {
+  background: var(--orange);
+  color: #fff;
+  border-color: var(--orange);
+}
+
+.filter-tabs button:hover:not(.active) { color: var(--text); }
+
+.search-box__count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Grid */
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Card - matches Image 2 */
+.character-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.character-card:hover { border-color: rgba(255,255,255,0.2); }
+
+.character-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.character-card__name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.character-card__anchor {
+  font-size: 1.1rem;
+  color: var(--orange);
+  opacity: 0.7;
+}
+
+.character-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.character-card__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.character-card__value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.character-card__value--blue  { color: #60a5fa; }
+.character-card__value--gold  { color: var(--gold); font-weight: 800; }
+
+.character-card__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Devil fruit badge - purple like Image 2 */
+.fruit-badge {
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.35);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.fruit-badge__label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: #a78bfa;
+  font-weight: 700;
+}
+
+.fruit-badge__name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #c4b5fd;
+}
+
+.fruit-badge__type {
+  font-size: 0.75rem;
+  color: #a78bfa;
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.state-msg { text-align: center; color: var(--text-muted); padding: 4rem; font-size: 1rem; }
+.state-msg--error { color: var(--danger); }
