@@ -6,6 +6,8 @@
       <h1 class="page__title">My Characters</h1>
       <p class="page__sub">{{ characterService.characterList().length }} custom characters created</p>
     </div>
+
+    <!-- Create Button -->
     <button class="btn-create" (click)="openModal()">+ Create Character</button>
   </div>
 
@@ -13,6 +15,7 @@
   <div class="character-grid">
     @for (c of characterService.characterList(); track c._id) {
       <div class="character-card">
+
         <div class="character-card__top">
           <div>
             <h3 class="character-card__name">{{ c.name }}</h3>
@@ -30,16 +33,19 @@
             <span class="field__label">Race</span>
             <span class="field__value">{{ c.race || '—' }}</span>
           </div>
+
           <div class="field">
             <span class="field__label">Age</span>
             <span class="field__value">{{ c.age || '—' }}</span>
           </div>
+
           @if (c.weapon) {
             <div class="field">
               <span class="field__label">Weapon</span>
               <span class="field__value">{{ c.weapon }}</span>
             </div>
           }
+
           @if (c.devilfruit) {
             <div class="field">
               <span class="field__label">Devil Fruit</span>
@@ -49,9 +55,13 @@
         </div>
 
         <div class="character-card__actions">
-          <button class="btn-edit"   (click)="openEdit(c)">Edit</button>
+          <!-- Edit Button -->
+          <button class="btn-edit" (click)="openEdit(c)">Edit</button>
+
+          <!-- Delete Button -->
           <button class="btn-delete" (click)="deleteCharacter(c._id)">Remove</button>
         </div>
+
       </div>
     }
 
@@ -78,43 +88,37 @@
 
       <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="modal__form">
 
-        <!-- name -->
         <div class="form-group">
-          <label class="form-group__label">Name <span class="required">*</span></label>
-          <input type="text" formControlName="name" placeholder="Enter character name" />
+          <label>Name <span class="required">*</span></label>
+          <input type="text" formControlName="name" placeholder="Enter character name">
         </div>
 
-        <!-- faction -->
         <div class="form-group">
-          <label class="form-group__label">Affiliation <span class="required">*</span></label>
+          <label>Affiliation <span class="required">*</span></label>
           <select formControlName="faction">
             <option value="Pirate">Pirate</option>
             <option value="Navy">Navy</option>
           </select>
         </div>
 
-        <!-- race -->
         <div class="form-group">
-          <label class="form-group__label">Race <span class="required">*</span></label>
-          <input type="text" formControlName="race" placeholder="e.g., Human, Fishman, Mink" />
+          <label>Race <span class="required">*</span></label>
+          <input type="text" formControlName="race" placeholder="e.g., Human, Fishman, Mink">
         </div>
 
-        <!-- age -->
         <div class="form-group">
-          <label class="form-group__label">Age <span class="required">*</span></label>
-          <input type="number" formControlName="age" min="1" placeholder="e.g., 19" />
+          <label>Age <span class="required">*</span></label>
+          <input type="number" formControlName="age" min="1" placeholder="e.g., 19">
         </div>
 
-        <!-- weapon -->
         <div class="form-group">
-          <label class="form-group__label">Weapon</label>
-          <input type="text" formControlName="weapon" placeholder="None or weapon name" />
+          <label>Weapon</label>
+          <input type="text" formControlName="weapon" placeholder="None or weapon name">
         </div>
 
-        <!-- devilfruit -->
         <div class="form-group">
-          <label class="form-group__label">Devil Fruit</label>
-          <input type="text" formControlName="devilfruit" placeholder="None or fruit name" />
+          <label>Devil Fruit</label>
+          <input type="text" formControlName="devilfruit" placeholder="None or fruit name">
         </div>
 
         <div class="modal__actions">
