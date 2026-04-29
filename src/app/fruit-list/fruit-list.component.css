@@ -4,7 +4,6 @@
   padding: 3rem 1.5rem 4rem;
 }
 
-/* Header */
 .page__header { text-align: center; margin-bottom: 2.5rem; }
 
 .page__title {
@@ -20,7 +19,6 @@
 .page__icon { font-size: 2.4rem; }
 .page__sub  { font-size: 1rem; color: var(--text-muted); margin-top: 0.5rem; }
 
-/* Search box */
 .search-box {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -62,7 +60,6 @@
 
 .search-box__count { font-size: 0.85rem; color: var(--text-muted); }
 
-/* Type filter pills - matches Image 3 */
 .type-pills {
   display: flex;
   flex-wrap: wrap;
@@ -88,14 +85,12 @@
   border-color: var(--purple, #7c3aed);
 }
 
-/* Grid */
 .fruit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.25rem;
 }
 
-/* Card - matches Image 3 */
 .fruit-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -130,7 +125,6 @@
 
 .fruit-card__icon { font-size: 1.3rem; flex-shrink: 0; }
 
-/* Type badge - matches Image 3 pill style */
 .type-badge {
   display: inline-block;
   align-self: flex-start;
@@ -143,7 +137,6 @@
   border: 1px solid rgba(124,58,237,0.3);
 }
 
-/* Description box - matches Image 3 inner box */
 .fruit-card__desc-box {
   background: var(--surface2);
   border: 1px solid var(--border);
