@@ -1,17 +1,14 @@
 <section class="page">
 
-  <!-- Page Header -->
   <div class="page__header">
     <div>
       <h1 class="page__title">My Characters</h1>
       <p class="page__sub">{{ characterService.characterList().length }} custom characters created</p>
     </div>
 
-    <!-- Create Button -->
     <button class="btn-create" (click)="openModal()">+ Create Character</button>
   </div>
 
-  <!-- Character Cards -->
   <div class="character-grid">
     @for (c of characterService.characterList(); track c._id) {
       <div class="character-card">
@@ -55,10 +52,8 @@
         </div>
 
         <div class="character-card__actions">
-          <!-- Edit Button -->
           <button class="btn-edit" (click)="openEdit(c)">Edit</button>
 
-          <!-- Delete Button -->
           <button class="btn-delete" (click)="deleteCharacter(c._id)">Remove</button>
         </div>
 
@@ -76,7 +71,6 @@
 
 </section>
 
-<!-- Modal -->
 @if (showModal()) {
   <div class="modal-overlay" (click)="closeModal()">
     <div class="modal" (click)="$event.stopPropagation()">
