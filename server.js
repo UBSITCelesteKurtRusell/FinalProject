@@ -35,7 +35,7 @@ app.post('/api/onepiece', async(req, res) => {
 });
 
 app.delete('/api/onepiece/:id', async(req, res) =>{
-    await OnePiece.findByIdAndDelete(req.params.id);
+    await Onepiece.findByIdAndDelete(req.params.id);
     res.status(204).send;
 })
 
