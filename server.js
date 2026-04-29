@@ -39,7 +39,7 @@ app.delete('/api/onepiece/:id', async(req, res) =>{
     res.status(204).send;
 })
 
-app.put('/api/onepiece:id', async (req, res) => {
+app.put('/api/onepiece/:id', async (req, res) => {
     const updateOnepiece = await Onepiece.findByIdAndUpdate
     (req.params.id, req.body, {new: true});
     res.send(updateOnepiece); 
