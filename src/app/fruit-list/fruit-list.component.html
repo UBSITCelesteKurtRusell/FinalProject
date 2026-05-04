@@ -1,16 +1,16 @@
 <section class="page">
 
-  <div class="page__header">
-    <h1 class="page__title"><span class="page__icon">🍎</span> Devil Fruits</h1>
-    <p class="page__sub">Discover the mysterious powers of the sea</p>
+  <div class="page-header">
+    <h1 class="page-title"><span class="page-icon">🍎</span> Devil Fruits</h1>
+    <p class="page-sub">Discover the mysterious powers of the sea</p>
   </div>
 
   <div class="search-box">
-    <div class="search-box__input-wrap">
-      <span class="search-box__icon">🔍</span>
+    <div class="search-box-input-wrap">
+      <span class="search-box-icon">🔍</span>
       <input
         type="text"
-        class="search-box__input"
+        class="search-box-input"
         placeholder="Search devil fruits..."
         (input)="onSearch($event)"
       />
@@ -27,7 +27,7 @@
       }
     </div>
 
-    <p class="search-box__count">
+    <p class="search-box-count">
       ⚡ Showing {{ filtered().length }} of {{ allFruits().length }} devil fruits
     </p>
   </div>
@@ -44,12 +44,12 @@
     <div class="fruit-grid">
       @for (f of filtered(); track f.id) {
         <div class="fruit-card">
-          <div class="fruit-card__top">
+          <div class="fruit-card-top">
             <div>
-              <h3 class="fruit-card__name">{{ f.name }}</h3>
-              <p class="fruit-card__roman">{{ f.roman_name }}</p>
+              <h3 class="fruit-card-name">{{ f.name }}</h3>
+              <p class="fruit-card-roman">{{ f.roman_name }}</p>
             </div>
-            <span class="fruit-card__icon">🍎</span>
+            <span class="fruit-card-icon">🍎</span>
           </div>
 
           @if (f.type) {
@@ -59,8 +59,8 @@
           }
 
           @if (f.description) {
-            <div class="fruit-card__desc-box">
-              <p class="fruit-card__desc">{{ f.description }}</p>
+            <div class="fruit-card-desc-box">
+              <p class="fruit-card-desc">{{ f.description }}</p>
             </div>
           }
         </div>

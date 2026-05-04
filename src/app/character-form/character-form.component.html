@@ -1,9 +1,9 @@
 <section class="page">
 
-  <div class="page__header">
+  <div class="page-header">
     <div>
-      <h1 class="page__title">My Characters</h1>
-      <p class="page__sub">{{ characterService.characterList().length }} custom characters created</p>
+      <h1 class="page-title">My Characters</h1>
+      <p class="page-sub">{{ characterService.characterList().length }} custom characters created</p>
     </div>
 
     <button class="btn-create" (click)="openModal()">+ Create Character</button>
@@ -13,45 +13,45 @@
     @for (c of characterService.characterList(); track c._id) {
       <div class="character-card">
 
-        <div class="character-card__top">
+        <div class="character-card-top">
           <div>
-            <h3 class="character-card__name">{{ c.name }}</h3>
-            <span class="character-card__faction"
+            <h3 class="character-card-name">{{ c.name }}</h3>
+            <span class="character-card-faction"
               [class.faction--pirate]="c.faction === 'Pirate'"
               [class.faction--navy]="c.faction === 'Navy'">
               {{ c.faction }}
             </span>
           </div>
-          <span class="character-card__anchor">⚓</span>
+          <span class="character-card-anchor">⚓</span>
         </div>
 
-        <div class="character-card__fields">
+        <div class="character-card-fields">
           <div class="field">
-            <span class="field__label">Race</span>
-            <span class="field__value">{{ c.race || '—' }}</span>
+            <span class="field-label">Race</span>
+            <span class="field-value">{{ c.race || '—' }}</span>
           </div>
 
           <div class="field">
-            <span class="field__label">Age</span>
-            <span class="field__value">{{ c.age || '—' }}</span>
+            <span class="field-label">Age</span>
+            <span class="field-value">{{ c.age || '—' }}</span>
           </div>
 
           @if (c.weapon) {
             <div class="field">
-              <span class="field__label">Weapon</span>
-              <span class="field__value">{{ c.weapon }}</span>
+              <span class="field-label">Weapon</span>
+              <span class="field-value">{{ c.weapon }}</span>
             </div>
           }
 
           @if (c.devilfruit) {
             <div class="field">
-              <span class="field__label">Devil Fruit</span>
-              <span class="field__value field__value--purple">{{ c.devilfruit }}</span>
+              <span class="field-label">Devil Fruit</span>
+              <span class="field-value field-value--purple">{{ c.devilfruit }}</span>
             </div>
           }
         </div>
 
-        <div class="character-card__actions">
+        <div class="character-card-actions">
           <button class="btn-edit" (click)="openEdit(c)">Edit</button>
 
           <button class="btn-delete" (click)="deleteCharacter(c._id)">Remove</button>
@@ -62,8 +62,8 @@
 
     @if (characterService.characterList().length === 0) {
       <div class="empty-state">
-        <p class="empty-state__icon">🏴‍☠️</p>
-        <p class="empty-state__text">No characters yet. Create your first one!</p>
+        <p class="empty-state-icon">🏴‍☠️</p>
+        <p class="empty-state-text">No characters yet. Create your first one!</p>
         <button class="btn-create" (click)="openModal()">+ Create Character</button>
       </div>
     }
@@ -75,12 +75,12 @@
   <div class="modal-overlay" (click)="closeModal()">
     <div class="modal" (click)="$event.stopPropagation()">
 
-      <div class="modal__header">
-        <h2 class="modal__title">{{ editingId() ? 'Edit Character' : 'Create New Character' }}</h2>
-        <button class="modal__close" (click)="closeModal()">✕</button>
+      <div class="modal-header">
+        <h2 class="modal-title">{{ editingId() ? 'Edit Character' : 'Create New Character' }}</h2>
+        <button class="modal-close" (click)="closeModal()">✕</button>
       </div>
 
-      <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="modal__form">
+      <form [formGroup]="characterForm" (ngSubmit)="onSubmit()" class="modal-form">
 
         <div class="form-group">
           <label>Name <span class="required">*</span></label>
@@ -115,7 +115,7 @@
           <input type="text" formControlName="devilfruit" placeholder="None or fruit name">
         </div>
 
-        <div class="modal__actions">
+        <div class="modal-actions">
           <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
           <button type="submit" class="btn-submit" [disabled]="characterForm.invalid">
             {{ editingId() ? 'Save Changes' : 'Create' }}

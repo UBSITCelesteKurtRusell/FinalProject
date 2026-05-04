@@ -1,19 +1,19 @@
-/* ── Page ───────────────────────────────────────────────────── */
+
 .page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 3rem 1.5rem 4rem;
 }
 
-.page__header {
+.page-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 2.5rem;
 }
 
-.page__title { font-size: 2.4rem; font-weight: 900; color: var(--text); }
-.page__sub   { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem; }
+.page-title { font-size: 2.4rem; font-weight: 900; color: var(--text); }
+.page-sub   { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem; }
 
 .btn-create {
   background: var(--orange);
@@ -29,7 +29,6 @@
 }
 .btn-create:hover { background: var(--orange-dark); }
 
-/* ── Character grid ─────────────────────────────────────────── */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -47,19 +46,19 @@
 }
 .character-card:hover { border-color: rgba(255,255,255,0.18); }
 
-.character-card__top {
+.character-card-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.character-card__name {
+.character-card-name {
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--text);
 }
 
-.character-card__faction {
+.character-card-faction {
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -71,9 +70,9 @@
 .faction--pirate { background: rgba(239,68,68,0.15); color: #f87171; }
 .faction--navy   { background: rgba(59,130,246,0.15); color: #60a5fa; }
 
-.character-card__anchor { font-size: 1.1rem; color: var(--orange); opacity: 0.7; }
+.character-card-anchor { font-size: 1.1rem; color: var(--orange); opacity: 0.7; }
 
-.character-card__fields {
+.character-card-fields {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -82,11 +81,11 @@
 }
 
 .field { display: flex; flex-direction: column; gap: 0.08rem; }
-.field__label { font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted); }
-.field__value { font-size: 0.88rem; font-weight: 600; color: var(--text); }
-.field__value--purple { color: #a78bfa; }
+.field-label { font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted); }
+.field-value { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.field-value--purple { color: #a78bfa; }
 
-.character-card__actions {
+.character-card-actions {
   display: flex;
   gap: 0.5rem;
   padding-top: 0.5rem;
@@ -121,7 +120,6 @@
 }
 .btn-delete:hover { border-color: var(--danger); color: var(--danger); }
 
-/* ── Empty state ────────────────────────────────────────────── */
 .empty-state {
   grid-column: 1 / -1;
   display: flex;
@@ -134,10 +132,9 @@
   border-radius: 12px;
   text-align: center;
 }
-.empty-state__icon { font-size: 3rem; }
-.empty-state__text { color: var(--text-muted); font-size: 0.95rem; }
+.empty-state-icon { font-size: 3rem; }
+.empty-state-text { color: var(--text-muted); font-size: 0.95rem; }
 
-/* ── Modal overlay ──────────────────────────────────────────── */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -149,7 +146,6 @@
   padding: 1rem;
 }
 
-/* ── Modal - matches Image 4 exactly ───────────────────────── */
 .modal {
   background: var(--surface);
   border: 1.5px solid rgba(255,255,255,0.1);
@@ -160,20 +156,20 @@
   overflow-y: auto;
 }
 
-.modal__header {
+.modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 1.5rem 0;
 }
 
-.modal__title {
+.modal-title {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--text);
 }
 
-.modal__close {
+.modal-close {
   background: none;
   border: none;
   color: var(--text-muted);
@@ -182,23 +178,22 @@
   padding: 0.25rem;
   line-height: 1;
 }
-.modal__close:hover { color: var(--text); }
+.modal-close:hover { color: var(--text); }
 
-.modal__form {
+.modal-form {
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
   padding: 1.5rem;
 }
 
-/* Form groups inside modal */
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.form-group__label {
+.form-group-label {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text);
@@ -206,8 +201,7 @@
 
 .required { color: var(--orange); }
 
-/* Modal actions */
-.modal__actions {
+.modal-actions {
   display: flex;
   gap: 0.75rem;
   margin-top: 0.5rem;

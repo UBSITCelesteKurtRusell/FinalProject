@@ -4,24 +4,23 @@
   padding: 3rem 1.5rem 4rem;
 }
 
-.page__header {
+.page-header {
   text-align: center;
   margin-bottom: 2.5rem;
 }
 
-.page__title {
+.page-title {
   font-size: 2.8rem;
   font-weight: 900;
   color: var(--text);
 }
 
-.page__sub {
+.page-sub {
   font-size: 1rem;
   color: var(--text-muted);
   margin-top: 0.5rem;
 }
 
-/* Search box */
 .search-box {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -33,18 +32,18 @@
   gap: 0.85rem;
 }
 
-.search-box__row {
+.search-box-row {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.search-box__input-wrap {
+.search-box-input-wrap {
   position: relative;
   flex: 1;
 }
 
-.search-box__icon {
+.search-box-icon {
   position: absolute;
   left: 0.85rem;
   top: 50%;
@@ -53,7 +52,7 @@
   pointer-events: none;
 }
 
-.search-box__input {
+.search-box-input {
   padding-left: 2.5rem;
   background: var(--surface2);
   border: 1.5px solid var(--border);
@@ -62,9 +61,8 @@
   font-size: 0.9rem;
   height: 44px;
 }
-.search-box__input:focus { border-color: var(--orange); }
+.search-box-input:focus { border-color: var(--orange); }
 
-/* Filter tabs */
 .filter-tabs {
   display: flex;
   gap: 0;
@@ -92,19 +90,17 @@
 
 .filter-tabs button:hover:not(.active) { color: var(--text); }
 
-.search-box__count {
+.search-box-count {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
 
-/* Grid */
 .character-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.25rem;
 }
 
-/* Card - matches Image 2 */
 .character-card {
   background: var(--surface);
   border: 1.5px solid var(--border);
@@ -116,49 +112,49 @@
 }
 .character-card:hover { border-color: rgba(255,255,255,0.2); }
 
-.character-card__top {
+.character-card-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 0.2rem;
 }
 
-.character-card__name {
+.character-card-name {
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--text);
   line-height: 1.2;
 }
 
-.character-card__anchor {
+.character-card-anchor {
   font-size: 1.1rem;
   color: var(--orange);
   opacity: 0.7;
 }
 
-.character-card__field {
+.character-card-field {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
 }
 
-.character-card__label {
+.character-card-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 0.05em;
 }
 
-.character-card__value {
+.character-card-value {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
 }
 
-.character-card__value--blue  { color: #60a5fa; }
-.character-card__value--gold  { color: var(--gold); font-weight: 800; }
+.character-card-value--blue  { color: #60a5fa; }
+.character-card-value--gold  { color: var(--gold); font-weight: 800; }
 
-.character-card__row {
+.character-card-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
@@ -166,7 +162,6 @@
   border-top: 1px solid var(--border);
 }
 
-/* Devil fruit badge - purple like Image 2 */
 .fruit-badge {
   background: rgba(124,58,237,0.15);
   border: 1px solid rgba(124,58,237,0.35);
@@ -177,14 +172,14 @@
   gap: 0.2rem;
 }
 
-.fruit-badge__label {
+.fruit-badge-label {
   font-size: 0.68rem;
   text-transform: uppercase;
   color: #a78bfa;
   font-weight: 700;
 }
 
-.fruit-badge__name {
+.fruit-badge-name {
   font-size: 0.9rem;
   font-weight: 700;
   color: #c4b5fd;
@@ -195,7 +190,6 @@
   color: #a78bfa;
 }
 
-/* Status badge */
 .status-badge {
   display: inline-block;
   align-self: flex-start;

@@ -1,17 +1,17 @@
 <section class="page">
 
-  <div class="page__header">
-    <h1 class="page__title">One Piece Characters</h1>
-    <p class="page__sub">Explore characters from the Grand Line</p>
+  <div class="page-header">
+    <h1 class="page-title">One Piece Characters</h1>
+    <p class="page-sub">Explore characters from the Grand Line</p>
   </div>
 
   <div class="search-box">
-    <div class="search-box__row">
-      <div class="search-box__input-wrap">
-        <span class="search-box__icon">🔍</span>
+    <div class="search-box-row">
+      <div class="search-box-input-wrap">
+        <span class="search-box-icon">🔍</span>
         <input
           type="text"
-          class="search-box__input"
+          class="search-box-input"
           placeholder="Search by name, job, or crew..."
           (input)="onSearch($event)"
         />
@@ -45,49 +45,49 @@
     <div class="character-grid">
       @for (c of filtered(); track c.id) {
         <div class="character-card">
-          <div class="character-card__top">
-            <h3 class="character-card__name">{{ c.name }}</h3>
-            <span class="character-card__anchor">⚓</span>
+          <div class="character-card-top">
+            <h3 class="character-card-name">{{ c.name }}</h3>
+            <span class="character-card-anchor">⚓</span>
           </div>
 
-          <div class="character-card__field">
-            <span class="character-card__label">Job</span>
-            <span class="character-card__value">{{ c.job || '—' }}</span>
+          <div class="character-card-field">
+            <span class="character-card-label">Job</span>
+            <span class="character-card-value">{{ c.job || '—' }}</span>
           </div>
 
-          <div class="character-card__field">
-            <span class="character-card__label">Crew</span>
-            <span class="character-card__value character-card__value--blue">{{ c.crew || '—' }}</span>
+          <div class="character-card-field">
+            <span class="character-card-label">Crew</span>
+            <span class="character-card-value character-card-value--blue">{{ c.crew || '—' }}</span>
           </div>
 
           @if (c.devil_fruit) {
             <div class="fruit-badge">
-              <span class="fruit-badge__label">Devil Fruit</span>
-              <span class="fruit-badge__name">{{ c.devil_fruit }}</span>
+              <span class="fruit-badge-label">Devil Fruit</span>
+              <span class="fruit-badge-name">{{ c.devil_fruit }}</span>
               @if (c.fruit_type) {
-                <span class="fruit-badge__type">{{ c.fruit_type }}</span>
+                <span class="fruit-badge-type">{{ c.fruit_type }}</span>
               }
             </div>
           }
 
           @if (c.bounty) {
-            <div class="character-card__field">
-              <span class="character-card__label">Bounty</span>
-              <span class="character-card__value character-card__value--gold">{{ c.bounty }}</span>
+            <div class="character-card-field">
+              <span class="character-card-label">Bounty</span>
+              <span class="character-card-value character-card-value--gold">{{ c.bounty }}</span>
             </div>
           }
 
-          <div class="character-card__row">
+          <div class="character-card-row">
             @if (c.age) {
-              <div class="character-card__field">
-                <span class="character-card__label">Age</span>
-                <span class="character-card__value">{{ c.age }}</span>
+              <div class="character-card-field">
+                <span class="character-card-label">Age</span>
+                <span class="character-card-value">{{ c.age }}</span>
               </div>
             }
             @if (c.size) {
-              <div class="character-card__field">
-                <span class="character-card__label">Size</span>
-                <span class="character-card__value">{{ c.size }}</span>
+              <div class="character-card-field">
+                <span class="character-card-label">Size</span>
+                <span class="character-card-value">{{ c.size }}</span>
               </div>
             }
           </div>
