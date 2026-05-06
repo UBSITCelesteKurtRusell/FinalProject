@@ -15,7 +15,7 @@ export class CharacterForm implements OnInit {
   editingId = signal<string | null>(null);
   showModal = signal(false);
 
-  // Matches server.js schema exactly: name, race, age, weapon, devilfruit, faction
+  
   characterForm = this.formBuilder.nonNullable.group({
     name:       ['', Validators.required],
     race:       ['', Validators.required],

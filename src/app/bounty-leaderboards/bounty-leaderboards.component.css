@@ -1,0 +1,143 @@
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.page-header { 
+    text-align: center;
+     margin-bottom: 3rem; 
+    }
+.page-title  { 
+    font-size: 2.4rem; 
+    font-weight: 900; 
+    color: var(--text); 
+}
+.page-sub    { 
+    font-size: 1rem; 
+    color: var(--text-muted); 
+    margin-top: 0.5rem; 
+}
+
+
+.podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.podium-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  max-width: 260px;
+  text-align: center;
+}
+
+.podium-medal { font-size: 2rem; }
+.podium-crown { font-size: 1.5rem; }
+
+.podium-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.podium-job {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.podium-fruit {
+  font-size: 0.72rem;
+  color: #a78bfa;
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+.podium-bounty {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+.podium-bounty-gold   { color: var(--gold); }
+.podium-bounty-silver { color: #94a3b8; }
+.podium-bounty-bronze { color: #cd7c2f; }
+
+
+.podium-bar {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  margin-top: 0.75rem;
+}
+.podium-bar-1 { height: 120px; background: rgba(240,180,41,0.25); border: 1.5px solid rgba(240,180,41,0.4); }
+.podium-bar-2 { height: 80px;  background: rgba(148,163,184,0.15); border: 1.5px solid rgba(148,163,184,0.3); }
+.podium-bar-3 { height: 55px;  background: rgba(205,124,47,0.15);  border: 1.5px solid rgba(205,124,47,0.3); }
+
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rank-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+}
+.rank-row:hover { border-color: rgba(255,255,255,0.15); }
+
+.rank-row-num {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  min-width: 32px;
+}
+
+.rank-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  flex: 1;
+}
+
+.rank-row-name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.rank-row-job  { font-size: 0.75rem; color: var(--text-muted); }
+
+.rank-row-crew {
+  font-size: 0.78rem;
+  color: #60a5fa;
+  font-weight: 600;
+  flex: 1;
+}
+
+.rank-row-fruit {
+  font-size: 0.72rem;
+  color: #a78bfa;
+  background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+.rank-row-bounty {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.state-msg { text-align: center; color: var(--text-muted); padding: 4rem; font-size: 1rem; }
+.state-msg-error { color: var(--danger); }

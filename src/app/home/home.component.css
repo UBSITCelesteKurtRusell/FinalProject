@@ -8,6 +8,7 @@
   background: var(--bg);
 }
 
+
 .hero-waves {
   position: absolute;
   inset: 0;
@@ -91,12 +92,12 @@
   text-decoration: none;
 }
 
-.btn--primary {
+.btn-primary {
   background: var(--orange);
   color: #fff;
   border: 2px solid var(--orange);
 }
-.btn--primary:hover { background: var(--orange-dark); }
+.btn-primary:hover { background: var(--orange-dark); }
 
 .btn-outline {
   background: transparent;

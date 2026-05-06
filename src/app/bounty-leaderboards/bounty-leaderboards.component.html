@@ -1,0 +1,89 @@
+<section class="page">
+
+  <div class="page-header">
+    <h1 class="page-title">💰 Bounty Leaderboard</h1>
+    <p class="page-sub">Top 10 most wanted pirates in the Grand Line</p>
+  </div>
+
+  @if (loading()) {
+    <p class="state-msg">Loading bounties...</p>
+  }
+
+  @if (error()) {
+    <p class="state-msg state-msg-error">{{ error() }}</p>
+  }
+
+  @if (!loading() && !error()) {
+    <div class="leaderboard">
+
+      
+      <div class="podium">
+        @if (top10()[1]) {
+          <div class="podium-card podium-card-2">
+            <span class="podium-medal">🥈</span>
+            <h3 class="podium-name">{{ top10()[1].name }}</h3>
+            <p class="podium-job">{{ top10()[1].job || '—' }}</p>
+            @if (top10()[1].fruit) {
+              <span class="podium-fruit">{{ top10()[1].fruit.name }}</span>
+            }
+            <div class="podium-bounty podium-bounty-silver">{{ top10()[1].bounty }}</div>
+            <div class="podium-bar podium-bar-2"></div>
+          </div>
+        }
+
+        @if (top10()[0]) {
+          <div class="podium-card podium-card-1">
+            <span class="podium-medal">🥇</span>
+            <div class="podium-crown">👑</div>
+            <h3 class="podium-name">{{ top10()[0].name }}</h3>
+            <p class="podium-job">{{ top10()[0].job || '—' }}</p>
+            @if (top10()[0].fruit) {
+              <span class="podium-fruit">{{ top10()[0].fruit.name }}</span>
+            }
+            <div class="podium-bounty podium-bounty-gold">{{ top10()[0].bounty }}</div>
+            <div class="podium-bar podium-bar-1"></div>
+          </div>
+        }
+
+        @if (top10()[2]) {
+          <div class="podium-card podium-card-3">
+            <span class="podium-medal">🥉</span>
+            <h3 class="podium-name">{{ top10()[2].name }}</h3>
+            <p class="podium-job">{{ top10()[2].job || '—' }}</p>
+            @if (top10()[2].fruit) {
+              <span class="podium-fruit">{{ top10()[2].fruit.name }}</span>
+            }
+            <div class="podium-bounty podium-bounty-bronze">{{ top10()[2].bounty }}</div>
+            <div class="podium-bar podium-bar-3"></div>
+          </div>
+        }
+      </div>
+
+      
+      <div class="rank-list">
+        @for (c of top10().slice(3); track c.id; let i = $index) {
+          <div class="rank-row">
+            <span class="rank-row-num">#{{ i + 4 }}</span>
+
+            <div class="rank-row-info">
+              <span class="rank-row-name">{{ c.name }}</span>
+              <span class="rank-row-job">{{ c.job || '—' }}</span>
+            </div>
+
+            @if (c.crew?.name) {
+              <span class="rank-row-crew">{{ c.crew.name }}</span>
+            }
+
+            @if (c.fruit) {
+              <span class="rank-row-fruit">{{ c.fruit.name }}</span>
+            }
+
+            <span class="rank-row-bounty">{{ c.bounty }}</span>
+          </div>
+        }
+      </div>
+
+    </div>
+  }
+
+</section>
